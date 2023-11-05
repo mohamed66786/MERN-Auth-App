@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import bcrypt from "bcryptjs";
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -21,26 +21,15 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+// used as middleware befor createin the user 
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
+  }
+  // hash the password
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
 const User = mongoose.model("User", userSchema);
 
 export default User;
-
-const user = new User({
-  name: "Mohamed",
-  email: "Mohamewwd@gmail.com",
-  password: "1824",
-});
-const findeUser = async function () {
-  const { name, email, password } = user;
-  const isFound = await User.findOne({ email });
-  if (isFound) {
-    console.log("user already exists");
-    process.exit(1);
-  } else {
-    user
-      .save()
-      .then((user) => console.log(user))
-      .catch((err) => console.error(err.message));
-  }
-};
-findeUser();
