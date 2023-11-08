@@ -1,4 +1,4 @@
-import User from "./userSchema.js";
+import User from "./userModule.js";
 
 const findeUser = async function (inputName,inputEmail,inputPassword) {
   const user = new User({
