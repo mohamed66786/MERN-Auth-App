@@ -1,7 +1,11 @@
 .main:hover{
-    color: rgb(189, 30, 30);
+    color: skyblue;
 }
 body{
     color: white;
     background-color: black;
+}
+.dropDown:hover{
+    background-color: blue;
+    color: white;
 }
