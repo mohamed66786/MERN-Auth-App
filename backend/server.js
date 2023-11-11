@@ -21,7 +21,4 @@ app.use(cookieParser());
 app.use(errorHandler);
 app.use("/api/users", userRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Welcome");
-});
 app.listen(port, () => console.log(`Server starting on ${port}`));
