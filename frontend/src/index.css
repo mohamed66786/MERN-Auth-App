@@ -1,3 +1,7 @@
 .main:hover{
     color: rgb(189, 30, 30);
 }
+body{
+    color: white;
+    background-color: black;
+}
